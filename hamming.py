@@ -53,8 +53,9 @@ def Hamming_error(codigo):
     er['E2'] = cs['M1'] ^ cs['M3'] ^ cs['M4'] ^ cs['M6'] ^ cs['M7'] ^ cs['C2']
     er['E4'] = cs['M2'] ^ cs['M3'] ^ cs['M4'] ^ cs['M8'] ^ cs['C4']
     er['E8'] = cs['M5'] ^ cs['M6'] ^ cs['M7'] ^ cs['M8'] ^ cs['C8']
-    error = int(f"0b{er['E8']}{er['E4']}{er['E2']}{er['E1']}",2)-1
-    if error != -1:
+    error = int(f"0b{er['E8']}{er['E4']}{er['E2']}{er['E1']}",2)
+    if error-1 != -1:
+        
         posicion = []
         anterior = []
         dato = []
@@ -62,7 +63,6 @@ def Hamming_error(codigo):
             anterior.append(cs[value])
             posicion.append(index+1)
         anterior = ['MENSAJE RECIBIDO CON ERROR'] + anterior
-        print(error)
         pos_error = TIPO_BIT_EXTENSO[-error]
         cs[pos_error] = (lambda x: 1 if x==0 else 0)(cs[pos_error])
         
@@ -78,8 +78,8 @@ def Hamming_error(codigo):
     else:
         print('No hay Error! crack')
 
-        
+
 if __name__ == '__main__':
-    codigo  = '001010101000'
+    codigo  = '001011101000'
     Hamming_error(codigo)
     # Hamming_palabra_transmitir(codigo)
