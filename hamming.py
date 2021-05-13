@@ -67,6 +67,13 @@ def Hamming_error(codigo):
 
     for index,value in enumerate(codigo):
         cs[TIPO_BIT_EXTENSO[index]] = int(value)
+    
+    dato = ['DATO'] 
+
+    for index,value in enumerate(TIPO_BIT_EXTENSO):
+        dato.append(cs[value])
+
+    print(f"{tabulate([ TIPO_BIT_OUTPUT,dato],tablefmt='fancy_grid')}\n")
     er = dict()
 
     er['E1'] = cs['M1'] ^ cs['M2'] ^ cs['M4'] ^ cs['M5'] ^ cs['M7'] ^ cs['C1']
@@ -110,7 +117,7 @@ def Hamming_error(codigo):
 
 
 if __name__ == '__main__':
-    codigo  = '110101100101'
+    codigo  = '101111010101'
     os.system('clear')
     Hamming_error(codigo)
     #Hamming_palabra_transmitir(codigo)
