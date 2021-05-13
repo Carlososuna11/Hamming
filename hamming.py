@@ -83,32 +83,34 @@ def Hamming_error(codigo):
 
     error = int(f"0b{er['E8']}{er['E4']}{er['E2']}{er['E1']}",2)
     if error-1 != -1:
-        
-        posicion = []
-        anterior = []
-        dato = []
-        for index,value in enumerate(TIPO_BIT_EXTENSO):
-            anterior.append(cs[value])
-            posicion.append(index+1)
-        anterior = ['MENSAJE RECIBIDO CON ERROR'] + anterior
-        pos_error = TIPO_BIT_EXTENSO[-error]
-        cs[pos_error] = (lambda x: 1 if x==0 else 0)(cs[pos_error])
-        
-        for index,value in enumerate(TIPO_BIT_EXTENSO):
-            dato.append(cs[value])
-        posicion.sort(reverse=True)
-        posicion = ['POSICION'] + posicion
-        dato = ['MENSAJE ARREGLADO'] + dato
+        if error <13:
+            posicion = []
+            anterior = []
+            dato = []
+            for index,value in enumerate(TIPO_BIT_EXTENSO):
+                anterior.append(cs[value])
+                posicion.append(index+1)
+            anterior = ['MENSAJE RECIBIDO CON ERROR'] + anterior
+            pos_error = TIPO_BIT_EXTENSO[-error]
+            cs[pos_error] = (lambda x: 1 if x==0 else 0)(cs[pos_error])
+            
+            for index,value in enumerate(TIPO_BIT_EXTENSO):
+                dato.append(cs[value])
+            posicion.sort(reverse=True)
+            posicion = ['POSICION'] + posicion
+            dato = ['MENSAJE ARREGLADO'] + dato
 
-        print('Upss! Parece que hay un error ')
-        print(f'Ubicacion del Error: posicion {error}')
-        print(tabulate([TIPO_BIT_OUTPUT,posicion,anterior,dato],tablefmt="fancy_grid"))
+            print('Upss! Parece que hay un error ')
+            print(f'Ubicacion del Error: posicion {error}')
+            print(tabulate([TIPO_BIT_OUTPUT,posicion,anterior,dato],tablefmt="fancy_grid"))
+        else:
+            print(f'Hay más de un Error!! {error}')
     else:
         print('No hay Error! crack')
 
 
 if __name__ == '__main__':
-    codigo  = '11011011'
+    codigo  = '110101100101'
     os.system('clear')
-    #Hamming_error(codigo)
-    Hamming_palabra_transmitir(codigo)
+    Hamming_error(codigo)
+    #Hamming_palabra_transmitir(codigo)
