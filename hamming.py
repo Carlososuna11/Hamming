@@ -2,6 +2,7 @@
     Codigo de Hamming para dummies
 """
 from tabulate import tabulate
+import os
 
 def Hamming_palabra_transmitir(codigo):
     """ 
@@ -107,6 +108,7 @@ def Hamming_error(codigo):
 
 
 if __name__ == '__main__':
-    codigo  = '001011101000'
-    Hamming_error(codigo)
-    #Hamming_palabra_transmitir(codigo)
+    codigo  = '11011011'
+    os.system('clear')
+    #Hamming_error(codigo)
+    Hamming_palabra_transmitir(codigo)
