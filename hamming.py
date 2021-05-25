@@ -117,7 +117,7 @@ def Hamming_error(codigo):
 
 
 if __name__ == '__main__':
-    codigo  = '101111010101'
+    codigo  = '00001100'
     os.system('clear')
-    Hamming_error(codigo)
-    #Hamming_palabra_transmitir(codigo)
+    #Hamming_error(codigo)
+    Hamming_palabra_transmitir(codigo)
